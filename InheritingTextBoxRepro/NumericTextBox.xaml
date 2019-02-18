@@ -1,0 +1,12 @@
+﻿<TextBox
+    x:Class="InheritingTextBoxRepro.Controls.NumericTextBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
+    xmlns:converters="using:InheritingTextBoxRepro.Converters"
+    extensions:TextBoxRegex.Regex="^[0-9]" extensions:TextBoxRegex.ValidationMode="Forced"
+    Background="{Binding (extensions:TextBoxRegex.IsValid), RelativeSource={RelativeSource Self}, Converter={StaticResource ValidationConverter}}">
+    <TextBox.Resources>
+        <converters:ValidationConverter x:Key="ValidationConverter"/>
+    </TextBox.Resources>
+</TextBox>

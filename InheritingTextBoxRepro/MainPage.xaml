@@ -1,0 +1,23 @@
+﻿<Page
+    x:Class="InheritingTextBoxRepro.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:custom="using:InheritingTextBoxRepro.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
+    xmlns:converters="using:InheritingTextBoxRepro.Converters"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <converters:ValidationConverter x:Key="ValidationConverter"/>
+    </Page.Resources>
+
+    <StackPanel>
+        <TextBox Header="Quantity1" Text="{Binding Quantity1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     extensions:TextBoxRegex.Regex="^[0-9]" extensions:TextBoxRegex.ValidationMode="Forced"
+                     Background="{Binding (extensions:TextBoxRegex.IsValid), RelativeSource={RelativeSource Self}, Converter={StaticResource ValidationConverter}}" />
+        <custom:NumericTextBox  Header="Quantity2" Text="{Binding Quantity2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+    </StackPanel>
+</Page>
